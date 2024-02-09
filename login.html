@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Log In</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body >
+	<div class="outdiv">
+		<section>
+			<div class="container">
+			<img src="images/attachment_136495517.png" class="logo"><br>
+			</div>
+            <h1>HIVE CLINIC</h1>	
+			<h2>Log In</h2>
+		    <!-- <hr class="with-text" data-content="OR"><br> -->
+		    <input id="user" class="big-input" type="text" placeholder="Phone, email address, or username"><br><br>
+			<input id="password" class="big-input" type="password" placeholder="Password">
+            <br>
+            <br>
+            <button onclick="auth()">Log In</button>
+        </section>
+	</div>
+
+    <script>
+        let details = {
+            username:"admin",
+            password:"enteruser1"
+        }
+        
+        function auth() {
+            let user = document.getElementById("user")
+            let password = document.getElementById("password")
+
+            if (user.value === details.username && password.value === details.password) {
+                window.location.assign("index.html")
+                alert("Login Successful")
+            } else {
+                alert("Invalid Login")
+            }
+        }
+
+    </script>
+</body>
+</html>

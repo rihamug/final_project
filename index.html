@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .main-div {
+            background-color: white;
+            margin: 0px auto;
+            margin-left: 50px;
+            margin-right: 50px;
+            border-radius: 20px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            padding-top: 1rem;
+            margin-left: 550px;
+        }
+
+        input[type=text], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            margin-left: 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-left: 20px;
+        }
+
+        button{
+            background-color:lightblue;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+         
+        h3{ 
+            margin-left: 20px;
+            font-size: 30px;
+        }
+
+        td{
+            font-size: 20px
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1>Hive Clinic</h1>
+    <a href="prescription.html">Next Page</a><br>
+    <img class="logo" src="images/attachment_136495517.png">
+    <div class="main-div">
+        <div class="patient_form">
+            
+                <h2>Add Patients</h2>
+                <input id="pName" type="text" placeholder="Patients Name"><br>
+                <input id="pAge" type="text" placeholder="Patient Age"><br>
+                <input id="pGender" type="text" placeholder="Patient Gender"><br>
+                <br>
+                <button onclick="addPatient()">Add Patient</button>
+            
+        </div>
+        <br>
+        <div class="drug_form">
+                <h2>Add Drugs</h2>
+                <input id="dName" type="text" placeholder="Drug Name"><br>
+                <input id="dQuantity" type="text" placeholder="Quantity"><br>
+                <input id="dType" type="text" placeholder="Drug Type"><br>
+                <br>
+                <button onclick="addDrug()">Add Drug</button>
+            </div>
+        <hr>
+        <div>
+            <h3>Patients</h3>
+            <table>
+                <tr id="patientList">
+
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <h3>Drugs</h3>
+            <ol id="drugsList">
+
+            </ol>
+        </div>
+    </div>
+
+    <script>
+
+        let patients = []
+        let patientDisplay = document.getElementById("patientList")
+
+        let drugs = []
+        let drugDisplay = document.getElementById("drugsList")
+
+        function addPatient() {
+            if (pName.value == "" || pAge.value == "" || pGender.value == "") {
+                alert("Insert Patient Details")
+            } else {
+                let pName = document.getElementById("pName")
+                let pAge = document.getElementById("pAge")
+                let pGender = document.getElementById("pGender")
+
+                let patientInfo = {
+                    name: pName.value,
+                    age: pAge.value,
+                    gender: pGender.value,
+                }
+                patients.push(patientInfo)
+                console.log(patients)
+                patientDisplay.innerHTML = ""
+                displayPatients()
+            }
+        }
+
+        function displayPatients() {
+            for (const patient of patients) {
+                appendPatient(patientDisplay, patient)
+            }
+        }
+        function appendPatient(patientDisplay, patient) {
+            let singlePatient = document.createElement("tr")
+            singlePatient.innerHTML = `
+            <td>${patient.name}</td>
+            <td>${patient.age}</td>
+            <td>${patient.gender}</td>
+            `
+            patientDisplay.appendChild(singlePatient)
+        }
+
+        function addDrug() {
+            if (dName.value == "" || dQuantity.value == "" || dType.value == "") {
+                alert("Insert Drug Details")
+            } else {
+                let dName = document.getElementById("dName")
+                let dQuantity = document.getElementById("dQuantity")
+                let dType = document.getElementById("dType")
+
+                let drugDetails = {
+                    name: dName.value,
+                    quantity: dQuantity.value,
+                    type: dType.value,
+                }
+                drugs.push(drugDetails)
+                console.log(drugs)
+                drugDisplay.innerHTML = ""
+                displayDrugs()
+            }
+        }
+
+        function displayDrugs() {
+            for (const drug of drugs) {
+                appendDrug(drugDisplay, drug)
+            }
+        }
+        function appendDrug(drugDisplay, drug) {
+            let singleDrug = document.createElement("li")
+            singleDrug.innerHTML = `
+            <span>${drug.name}</span>
+            <span>${drug.quantity}</span>
+            <span>${drug.type}</span>
+            `
+            drugDisplay.appendChild(singleDrug)
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+
+        }
+
+        .main-div {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10rem;
+            margin-right: 10rem;
+            border-radius: 15px;
+
+
+        }
+
+        h2 {
+            padding-left: 20rem;
+        }
+
+
+        button {
+            font-size: 15px;
+            border-radius: 15px;
+            padding: 10px 20px;
+            border: none;
+            width: 19rem;
+            cursor: pointer;
+            background-color: lightblue;
+            margin-left: 1rem;
+
+
+        }
+
+        h1 {
+            margin-left: 20px;
+        }
+
+        .name_div {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        #patientName {
+            margin-left: 10px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            background-color: lightblue;
+            color: black;
+        }
+
+        #patientAge {
+            margin-left: 10px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            background-color: lightblue;
+            color: black;
+            border: 1px;
+        }
+
+
+        #patientDisease {
+            margin-left: 10px;
+            padding: 10px 10px 10px 10px;
+            border-radius: 5px;
+            background-color: lightblue;
+            color: black;
+        }
+
+        label {
+            font-size: 20px;
+            margin-left: 15px;
+
+        }
+
+        a {
+            margin-left: 20px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            padding-top: 1rem;
+            margin-left: 550px;
+        }
+
+        span {
+            margin-left: 20px;
+        }
+
+        h4 {
+            margin-left: 20px;
+        }
+
+        .prescribeDiv {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hive Hospital</h1>
+    <a href="index.html">Previous Page</a>
+    <a href="patients.html">Next Page</a>
+    <br>
+    <a href="index.html"><img class="logo" src="images/attachment_136495517.png"></a>
+    <div class="main-div">
+        <h2>Prescription Page</h2>
+
+        <div class="name_div">
+            <label>Patient Name:</label>
+            <select id="patientName">
+                <option>Select Patient</option>
+                <option>Ryan David</option>
+                <option>Rahim James</option>
+                <option>Asiimwe Ahura</option>
+            </select>
+        </div>
+        <br>
+        <br>
+        <div class="age_div">
+            <label>Patient Age:</label>
+            <input id="patientAge" type="number" placeholder="Insert Patient Age">
+        </div>
+        <br>
+        <br>
+        <div class="disease_div">
+            <label>Patient Disease:</label>
+            <select id="patientDisease">
+                <option>Select Disease</option>
+                <option>Common Cold</option>
+                <option>Cough</option>
+                <option>Fever</option>
+                <option>Migraines</option>
+            </select>
+        </div>
+        <br>
+        <br>
+        <button onclick="pRescribe()">Prescribe</button>
+        <br><br><br>
+        <div class="prescribeDiv">
+            <h1>Doctor's Prescription</h1><br>
+            <h4>Drug:</h4>
+
+            <span id="drug_name">
+
+            </span>
+            <h4>Dosage:</h4>
+            <span id="dosage">
+
+            </span>
+            <h4>Details:</h4>
+            <span id="details">
+
+            </span>
+        </div>
+    </div>
+    <script>
+        function pRescribe() {
+            let age = document.getElementById("patientAge")
+            let disease = document.getElementById("patientDisease")
+            let name = document.getElementById("patientName")
+            let display = document.querySelector("#drug_name")
+            let dosage = document.getElementById("dosage")
+            let details = document.getElementById("details")
+
+            if (age.value <= 0) {
+                alert("Wrong age")
+            } else if (age.value <= 14 && disease.value === "Common Cold") {
+                display.innerHTML = "Ibuprofen tablets", dosage.innerHTML = "2x3 for 5 days", details.innerHTML = "Plenty of fluids"
+            } else if (age.value > 14 && disease.value === "Common Cold") {
+                display.innerHTML = "Ibuprofen tablets", dosage.innerHTML = "2x4 for 7 days", details.innerHTML = "Plenty of fluids"
+            } else if (age.value <= 14 && disease.value === "Cough") {
+                display.innerHTML = "Cough Syrup", dosage.innerHTML = "5mls thrice for 5 days", details.innerHTML = "Plenty of vitamins"
+            } else if (age.value > 14 && disease.value === "Cough") {
+                display.innerHTML = "Cough Syrup", dosage.innerHTML = "10mls thrice for 5 days", details.innerHTML = "Plenty of vitamins"
+            } else if (age.value <= 14 && disease.value === "Fever") {
+                display.innerHTML = "Paracetamol Tablets", dosage.innerHTML = "2x3 for 5 days", details.innerHTML = "Plenty of fluids and rest"
+            } else if (age.value > 14 && disease.value === "Fever") {
+                display.innerHTML = "Paracetamol", dosage.innerHTML = "2x4 for 5 days", details.innerHTML = "Plenty of fluids and rest"
+            } else if (age.value <= 14 && disease.value === "Migraines") {
+                display.innerHTML = "Sumatriptan tablets", dosage.innerHTML = "2x2 for 5 days", details.innerHTML = "Plenty of fluids and exercise"
+            } else if (age.value > 14 && disease.value === "Migraines") {
+                display.innerHTML = "Sumatriptan tablets", dosage.innerHTML = "2x3 for 5 days", details.innerHTML = "Plenty of fluids and exercise"
+            } else {
+                return false
+            }
+
+
+
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>
